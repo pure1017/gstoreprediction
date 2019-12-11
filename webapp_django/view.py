@@ -1,7 +1,6 @@
 import math
 from django.http import HttpResponse
 from django.shortcuts import render
-import pandas_gbq
 import json
 from pymongo import MongoClient
 
