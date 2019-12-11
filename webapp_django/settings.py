@@ -26,6 +26,7 @@ SECRET_KEY = 'iq1=ji)$nsd@7ztle3!=t0(!$me)*+ho!4*%=mo*1d3(0wxdwi'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ('.final-project-258514.appspot.com',)
 
 
 # Application definition
