@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>GStore Revenue Prediction_PROJECT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oxygen:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/animate.css">
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="../static/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../static/fonts/fontawesome/css/font-awesome.min.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <style>
+
+    path {
+      fill-opacity: .9;
+      stroke: #fff;
+      stroke-width: 2px;
+    }
+
+    {#path:hover {#}
+    {#    fill-opacity: .5;#}
+    {#}#}
+
+    line {
+      stroke: #999;
+    }
+
+    </style>
+  </head>
+  <body>
+    
+    <header role="banner">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand " href="index">Gstore Revenue Prediction</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample05">
+            <ul class="navbar-nav pl-md-5 ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="projects">Project</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="services" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Models</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="linear_regression">Linear Regression</a>
+                  <a class="dropdown-item" href="random_forest">Random Forest</a>
+                  <a class="dropdown-item" href="lightGBM">lightGBM</a>
+                  <a class="dropdown-item" href="gradient_boosting">Gradient Boosting</a>
+                  <a class="dropdown-item" href="nn">Neural Network</a>
+                  <a class="dropdown-item" href="cnn">CNN</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="blog">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact">Contact</a>
+              </li>
+            </ul>
+
+            <div class="navbar-nav ml-auto">
+              <form method="post" class="search-form">
+                <span class="icon ion ion-search"></span>
+                <input type="text" class="form-control" placeholder="Search...">
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <div class="top-shadow"></div>
+    
+    <div class="inner-page">
+    <div class="slider-item" style="background-image: url('../static/images/about_page_image_1.jpg');">
+        
+        <div class="container">
+          <div class="row slider-text align-items-center justify-content-center">
+            <div class="col-md-8 text-center col-sm-12 element-animate pt-5">
+              <h1 class="pt-5"><span>Our Project</span></h1>
+              <p class="mb-5 w-75">In this part, we will present our procedure in conducting the project step by step. But modeling part
+               will be shown in Models page.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <form>
+        <label><input type="radio" name="mode" value="grouped"> Grouped</label>
+        <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
+    </form>
+    <div style="width:960px; margin:auto;">
+        <svg width="960" height="550" id="svg_revenue"></svg>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+        <script src="{% static 'js/project_revenue.js' %}"></script>
+        <script>
+            var Data = {{data1|safe}};
+            revenue(Data);
+        </script>
+    </div>
+    <div class="row justify-content-center">
+          <div class="col-md-8 mb-5">
+              <p>The first graph explores the total transaction revenues in every subcontinent worldwidely. The vertical
+                  axis represents the total transaction revenues which we want to predict. Three colors from light to deep
+                  blue in the barchart mean different device categories —— tablet, mobile, desktop. We found that destop
+                  device accounts for the most proportion. After the exloration, the graph told us the total transaction
+                  revenues in North America are the most.
+              </p>
+          </div>
+        </div>
+    <div style="width:1000px; margin:auto;">
+        <svg width="1000" height="700" id="svg_map"></svg>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+        <script src="https://d3js.org/d3-voronoi.v1.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v1.min.js"></script>
+        <script src="{% static 'js/project_map.js' %}"></script>
+        <script>
+            var Data = {{data2|safe}};
+            var Map = {{map0|safe}};
+            map(Data, Map);
+        </script>
+    </div>
+    <div class="row justify-content-center">
+          <div class="col-md-8 mb-5">
+              <p>Because North America takes the largest proportion, we plot the total transaction revenues in every state of USA.
+                  The deeper the color, the more transaction revenues. The top 3 states are New York, California and Texas.
+              </p>
+          </div>
+        </div>
+    <div style="width:1000px; margin:auto;">
+        <svg width="1000" height="700" id="svg_word"></svg>
+        <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+        <script src="{% static 'js/project_trafficsrc.js' %}"></script>
+        <script>
+            var Data = {{data3|safe}}
+            wordcloud(Data);
+        </script>
+    </div>
+    <div class="row justify-content-center">
+          <div class="col-md-8 mb-5">
+              <p>
+                  In this graph, we took two features in traffic source —— trafficSource.source and trafficSource.medium,
+                  then integrated these two features to explore the relationship with total transaction revenues.
+              </p>
+          </div>
+        </div>
+    <section class="section border-t">
+      <div class="container">
+        <div class="row justify-content-center mb-5 element-animate">
+          <div class="col-md-8 text-center">
+            <h2 class=" heading mb-4">Models</h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4 element-animate">
+            <a href="linear_regression" class="link-thumbnail">
+              <h3>Linear Regression</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/linear_regression.png" alt="Image" width="280" height="250">
+            </a>
+          </div>
+          <div class="col-md-4 element-animate">
+            <a href="random_forest" class="link-thumbnail">
+              <h3>Random Forest</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/random_forest.jpg" alt="Image" width="320" height="250">
+            </a>
+          </div>
+          <div class="col-md-4 element-animate">
+            <a href="lightGBM" class="link-thumbnail">
+              <h3>LightGBM</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/light_GBM.jpg" alt="Image" width="320" height="250">
+            </a>
+          </div>
+          <div class="col-md-4 element-animate">
+            <a href="gradient_boosting" class="link-thumbnail">
+              <h3>Gradient Boosting</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/gradient_boosting.jpeg" alt="Image" width="310" height="250">
+            </a>
+          </div>
+          <div class="col-md-4 element-animate">
+            <a href="nn" class="link-thumbnail">
+              <h3>Neural Network</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/NN.jpg" alt="Image" width="300" height="250">
+            </a>
+          </div>
+          <div class="col-md-4 element-animate">
+            <a href="cnn" class="link-thumbnail">
+              <h3>CNN</h3>
+              <span class="ion-plus icon"></span>
+              <img src="../static/images/CNN.jpeg" alt="Image" width="250" height="250">
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    <!-- END section -->
+
+{#    <section class="section bg-light block-11">#}
+{#      <div class="container"> #}
+{#        <div class="row justify-content-center mb-5">#}
+{#          <div class="col-md-8 text-center">#}
+{#            <h2 class=" heading mb-4">Testimonial</h2>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="nonloop-block-11 owl-carousel">#}
+{#          <div class="item">#}
+{#            <div class="block-33 h-100">#}
+{#                <div class="vcard d-flex mb-3">#}
+{#                  <div class="image align-self-center"><img src="../static/images/person_3.jpg" alt="Person here"></div>#}
+{#                  <div class="name-text align-self-center">#}
+{#                    <h2 class="heading">John Smith</h2>#}
+{#                    <span class="meta">XYZ Inc</span>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="text">#}
+{#                  <blockquote>#}
+{#                    <p>&rdquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. &ldquo;</p>#}
+{#                  </blockquote>#}
+{#                </div>#}
+{#              </div>#}
+{#          </div>#}
+{##}
+{#          <div class="item">#}
+{#            <div class="block-33 h-100">#}
+{#                <div class="vcard d-flex mb-3">#}
+{#                  <div class="image align-self-center"><img src="../static/images/person_2.jpg" alt="Person here"></div>#}
+{#                  <div class="name-text align-self-center">#}
+{#                    <h2 class="heading">Joshua Darren</h2>#}
+{#                    <span class="meta">XYZ Inc.</span>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="text">#}
+{#                  <blockquote>#}
+{#                    <p>&rdquo; Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. &ldquo;</p>#}
+{#                  </blockquote>#}
+{#                </div>#}
+{#              </div>#}
+{#          </div>#}
+{##}
+{#          <div class="item">#}
+{#            <div class="block-33 h-100">#}
+{#                <div class="vcard d-flex mb-3">#}
+{#                  <div class="image align-self-center"><img src="../static/images/person_3.jpg" alt="Person here"></div>#}
+{#                  <div class="name-text align-self-center">#}
+{#                    <h2 class="heading">John Smith</h2>#}
+{#                    <span class="meta">XYZ Inc.</span>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="text">#}
+{#                  <blockquote>#}
+{#                    <p>&rdquo; A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. &ldquo;</p>#}
+{#                  </blockquote>#}
+{#                </div>#}
+{#              </div>#}
+{#          </div>#}
+{##}
+{#          <div class="item">#}
+{#            <div class="block-33 h-100">#}
+{#                <div class="vcard d-flex mb-3">#}
+{#                  <div class="image align-self-center"><img src="../static/images/person_3.jpg" alt="Person here"></div>#}
+{#                  <div class="name-text align-self-center">#}
+{#                    <h2 class="heading">John Smith</h2>#}
+{#                    <span class="meta">XYZ Inc.</span>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="text">#}
+{#                  <blockquote>#}
+{#                    <p>&rdquo; Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. &ldquo;</p>#}
+{#                  </blockquote>#}
+{#                </div>#}
+{#              </div>#}
+{#          </div>#}
+{#          #}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <!-- END .block-4 -->#}
+{#    </section>#}
+    
+
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/jquery.waypoints.min.js"></script>
+    <script src="../static/js/jquery.fancybox.min.js"></script>
+    <script src="../static/js/main.js"></script>
+
+    <script src="../static/js/main.js"></script>
+    
+  </body>
+</html>
